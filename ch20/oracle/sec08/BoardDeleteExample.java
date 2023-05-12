@@ -1,13 +1,11 @@
-package ch20.oracle.sec07;
+package ch20.oracle.sec08;
 
-
-import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class BoardUpdateExample {
+public class BoardDeleteExample {
 
 	public static void main(String[] args) {
 		Connection conn = null;
@@ -23,26 +21,15 @@ public class BoardUpdateExample {
 			);
 			
 			//매개변수화된 SQL 문 작성
-			String sql = new StringBuilder()
-					.append("UPDATE boards SET ")
-					.append("btitle=?, ")
-					.append("bcontent=?, ")
-					.append("bfilename=?, ")
-					.append("bfiledata=? ")
-					.append("WHERE bno=?")
-					.toString();
+			String sql = "DELETE FROM boards WHERE bwriter=?";
 			
 			//PreparedStatement 얻기 및 값 지정
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, "눈사람");
-			pstmt.setString(2, "눈으로 만든 사람");
-			pstmt.setString(3, "snowman.jpg");
-			pstmt.setBlob(4, new FileInputStream("src/ch20/oracle/sec07/snowman.jpg"));
-			pstmt.setInt(5, 1);   //boards 테이블에 있는 게시물 번호(bno) 지정
+			pstmt.setString(1, "winter");
 			
 			//SQL 문 실행
 			int rows = pstmt.executeUpdate();
-			System.out.println("수정된 행 수: " + rows);
+			System.out.println("삭제된 행 수: " + rows);
 			
 			//PreparedStatement 닫기
 			pstmt.close();

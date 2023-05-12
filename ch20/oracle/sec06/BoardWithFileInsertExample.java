@@ -28,11 +28,11 @@ public class BoardWithFileInsertExample {
 			
 			//PreparedStatement 얻기 및 값 지정
 			PreparedStatement pstmt = conn.prepareStatement(sql, new String[] {"bno"});
-			pstmt.setString(1, "눈오는 날");
-			pstmt.setString(2, "함박눈이 내려요.");
+			pstmt.setString(1, "크리스마스");
+			pstmt.setString(2, "메리 크리스마스~");
 			pstmt.setString(3, "winter");
-			pstmt.setString(4, "snow.jpg");
-			pstmt.setBlob(5, new FileInputStream("src/ch20/oracle/sec06/snow.jpg"));
+			pstmt.setString(4, "chrismas.jpg");
+			pstmt.setBlob(5, new FileInputStream("src/ch20/oracle/sec06/chrismas.jpg"));
 			
 			//SQL 문 실행
 			int rows = pstmt.executeUpdate();
